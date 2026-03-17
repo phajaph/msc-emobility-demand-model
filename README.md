@@ -4,15 +4,14 @@ This repository contains the Python-based energy demand modeling codebase develo
 
 The model provides a highly reproducible, normative planning framework for translating empirical commercial vehicle census data into actionable, spatially-resolved electricity grid requirements (measured in Coincident Peak MW and Annual GWh).
 
-## 📊 Core Methodology: The Energy-Capacity Distinction
+# Core Methodology: The Energy-Capacity Distinction
 A central finding of this model is the critical distinction between total energy volume and peak grid capacity. 
 * **Energy Demand (GWh):** Can largely be accommodated by Kenya's existing national generation capacity through overnight valley-filling (off-peak charging).
 * **Peak Capacity (MW):** Creates severe, localized distribution bottlenecks at specific transport nodes, driven primarily by the 40kW DC fast-charging requirements of high-capacity paratransit (Matatus) during daytime operational shifts.
 
-## 📂 Repository Structure
+# Repository Structure
 
 Ensure your local directory matches this structure before running the scripts:
-
 ```text
 ├── data/
 │   ├── cleaned_baseline_2024.csv         # REQUIRED: Base empirical fleet input
@@ -29,3 +28,32 @@ Ensure your local directory matches this structure before running the scripts:
 ├── 04_plot_load_profiles.py
 ├── 05_spatial_analysis.py
 └── README.md
+```
+# Execution Steps
+
+The scripts are designed to be run sequentially to replicate the dissertation findings:
+
+**1. Project Future Fleet Stock (`01_project_stock.py`)**
+Applies a 1.69% annual demographic growth rate to the 2024 baseline and calculates the absolute electric vehicle units required to meet three normative penetration targets (2% BAU, 5% Policy-Aligned, 15% High-Ambition) by 2030. It also applies the critical 80/20 AC/DC operational charging split to the Matatu fleet.
+
+**2. Generate Scenarios & Tables (`02_generate_scenarios.py`)**
+Calculates the year-over-year linear interpolation of EV market share and generates the trajectory growth curves, outputting detailed annual class-by-class data tables for planners.
+
+**3. Simulate Energy & Peak Load (`03_simulate_energy_demand.py`)**
+The core physics engine. Calculates total annual energy demand (GWh) and coincident peak demand (MW) based on specific vehicle characteristics (battery efficiency, daily range, charger rating, and calibrated coincidence factors).
+
+**4. Spatio-Temporal Load Profiling (`04_plot_load_profiles.py`)**
+Generates synthetic 24-hour Gaussian load distribution curves to visualize exactly *when* grid stress occurs, demonstrating the impact of EPRA Time-of-Use (TOU) tariffs and comparing localized county demand against the national aggregate KPLC load curve.
+
+**5. Nodal Spatial Analysis (`05_spatial_analysis.py`)**
+Allocates the calculated peak loads to specific administrative revenue units to identify critical infrastructure intervention nodes (categorized into Red, Orange, and Green topological zones).
+
+# Requirements
+* Python 3.8+
+* `pandas`
+* `numpy`
+* `matplotlib`
+
+# Citation
+If you use this model or framework in your research or policy planning, please cite:
+> Kwambai, J. K. (2026). *Development of an Energy Demand Model for Electric Mobility Integration into Kenya's County Energy Planning: A Case of Murang'a County*. MSc Dissertation, School of Computing and Engineering Sciences, Strathmore University, Nairobi.
