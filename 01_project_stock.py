@@ -25,7 +25,7 @@ def run():
     df['EVs_Policy_2030'] = (df['Stock_2030_Total'] * 0.05).round(0).astype(int)         
     df['EVs_HighAmbition_2030'] = (df['Stock_2030_Total'] * 0.15).round(0).astype(int)   
 
-    # 4. Bifurcate Matatu Fleet by Charging Regime (80% AC Depot / 20% DC Rapid)
+    # 4. Split Matatu Fleet by Charging Regime (80% AC Depot / 20% DC Rapid)
     def split_matatu_mix(row, col):
         if row['Vehicle_Type'] == 'Matatus':
             total = row[col]
