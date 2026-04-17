@@ -2,7 +2,7 @@
 
 This repository contains the Python-based energy demand modeling codebase developed for the MSc dissertation: *"Development of an Energy Demand Model for Electric Mobility Integration into Kenya's County Energy Planning: A Case of Murang'a County."*
 
-The model provides a reproducible, normative planning framework for translating empirical commercial vehicle census data into actionable, spatially-resolved electricity grid requirements (measured in Coincident Peak MW and Annual GWh).
+The model provides a reproducible, normative planning framework for translating commercial vehicle census data into actionable, spatially-resolved electricity grid requirements (measured in Coincident Peak MW and Annual GWh).
 
 # Core Methodology: The Energy-Capacity Distinction
 A central finding of this model is the critical distinction between total energy volume and peak grid capacity. 
